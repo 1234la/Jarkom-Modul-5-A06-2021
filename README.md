@@ -345,4 +345,163 @@ OPTIONS=""
 - Elena
 ![hasil dhcp elena](https://user-images.githubusercontent.com/55240758/145657668-d1a4bfde-2157-452f-8a6c-0cffd9175fb7.jpg)
 
+## Soal 1 (belum lengkap)
+Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE. Maka pada CLI Foosha masukkan perintah berikut:
+```
+iptables -t nat -A POSTROUTING -s 10.2.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.96
+```
+dimana _to-source_ tersebut didapatkan dari .....
 
+Selain itu, agar klien yang terdiri dari Blueno, Cipher, Elena, Fukurou dapat mengakses ke luar, maka perlu ditambahkan forwarding pada DNS Server yaitu Doriki. Maka terlebih dahulu...
+
+- Melakukan instalasi DNS Server : Melakukan update terlebih dahulu dengan ```apt-get update ```, kemudian ```apt-get install bind9 -y``` 
+
+- Pada file ``/etc/bind/named.conf.options``, uncomment pada bagian (0.0.0.0 diubah menjadi 192.168.122.1):
+
+```
+forwarders {
+    192.168.122.1
+};
+```  
+
+Kemudian command pada bagian ini, hingga menjadi seperti ini
+```
+// dnssec-validation auto;
+```
+
+Dan tambahkan
+```
+allow-query{any;};
+```
+
+Maka secara keseluruhan pada file ``named.conf.options`` sebagai berikut
+```
+options {
+        directory "/var/cache/bind";
+
+        // If there is a firewall between you and nameservers you want
+        // to talk to, you may need to fix the firewall to allow multiple
+        // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+        // If your ISP provided one or more IP addresses for stable
+        // nameservers, you probably want to use them as forwarders.
+        // Uncomment the following block, and insert the addresses replacing
+        // the all-0's placeholder.
+
+        forwarders {
+                192.168.122.1;
+        };
+
+        //========================================================================
+        // If BIND logs error messages about the root key being expired,
+        // you will need to update your keys.  See https://www.isc.org/bind-keys
+        //========================================================================
+        //dnssec-validation auto;
+        allow-query{any;};
+
+        auth-nxdomain no;    # conform to RFC1035
+				listen-on-v6 { any; };
+};
+```
+
+## Soal 2
+Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan. 
+
+**Langkah 1 :** Masukkan perintah berikut pada CLI DHCP server & DNS server
+```
+# Port 80 -> HTTP
+iptables -A FORWARD -d 10.2.7.128/29 -i eth0 -p tcp --dport 80 -j DROP
+# Port 443 -> HTTPS
+iptables -A FORWARD -d 10.2.7.128/29 -i eth0 -p tcp --dport 443 -j ACCEPT
+```
+
+**Langkah 2:** Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan 
+- Melakukan ``ping its.ac.id`` untuk HTTPS 
+
+![no  2 ping pada jipangu](https://user-images.githubusercontent.com/55240758/145658823-24947d44-0d49-4238-ac9d-1c1da1dd0afc.jpg)
+
+- Melakukan ``ping monta.if.its.ac.id`` untuk HTTP
+
+![no  2 ping pada doriki](https://user-images.githubusercontent.com/55240758/145658820-4ddbd6ac-12d8-480a-9d6d-3af03b62310c.jpg)
+
+## Soal 3 (belum selesai)
+Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop. 
+**Langkah 1:** Masukkan perintah berikut pada CLI DHCP server & DNS server
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
+
+**Langkah 2:** Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping 4 kali pada CLI yang berbeda-beda, maka pada ping yang ke 4 tidak akan berjalan jika perintah sebelumnya telah berhasil.
+
+Gambar ...
+
+
+## Soal 4 (belum selesai)
+Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis. 
+**Langkah 1:** Pada CLI DNS server (Doriki) tambahkan perintah berikut
+```
+# Blueno
+iptables -A INPUT -s 10.2.7.0/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.2.7.0/25 -j REJECT
+
+# Cipher
+iptables -A INPUT -s 10.2.0.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.2.0.0/22 -j REJECT
+```
+
+**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :
+- Sabtu, 11 Desember 2021
+1.  Pukul 08:00 -> gabisa
+```
+date -s "6 DEC 2021 08:00:00"
+```
+Gambar ...
+
+2.  Pukul 16:00 -> gabisa
+```
+date -s "6 DEC 2021 16:00:00"
+```
+Gambar ...
+
+- Senin, 15 November 2021 
+1.  Pukul 10:00 -> bisa
+```
+date -s "15 NOV 2021 10:00:00"
+```
+Gambar ...
+
+2.  Pukul 18:00 -> gabisa
+```
+date -s "15 NOV 2021 18:00:00"
+```
+Gambar ...
+
+## Soal 5 (belum selesai)
+Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
+**Langkah 1:** Pada CLI DNS server (Doriki) tambahkan perintah berikut
+```
+# Elena
+iptables -A INPUT -s 10.2.4.0/23 -m time --timestart 15:01 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 10.2.4.0/23 -j REJECT
+
+# Fukurou
+iptables -A INPUT -s 10.2.6.0/24 -m time --timestart 15:01 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 10.2.6.0/24 -j REJECT
+```
+
+**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :
+- Sabtu, 11 Desember 2021
+1.  Pukul 08:00 -> gabisa
+```
+date -s "6 DEC 2021 08:00:00"
+```
+Gambar ...
+
+2.  Pukul 16:00 -> bisa
+```
+date -s "6 DEC 2021 16:00:00"
+```
+Gambar ...
+
+## Soal 6
+Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate.
