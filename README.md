@@ -16,7 +16,7 @@ Lapres Praktikum Jaringan Komputer 2021 - Modul 4
 # Soal Praktikum
 Pada soal diberikan topologi berikut :
 
-![topologi](https://user-images.githubusercontent.com/55240758/145649800-a1644c01-1022-47f0-bc1c-87f7a1fd884a.jpg)
+![topologi_fix](https://user-images.githubusercontent.com/55240758/145660476-659736b6-c9c3-4872-a4e9-ca7595c34e1d.jpg)
 
 Maka selanjutnya kami diminta untuk merancang topologi yang sama pada GNS3 (A). Dimana terdapat keterangan bahwa :  
 - Doriki adalah DNS Server  
@@ -36,7 +36,8 @@ Perhitungan IP dapat dilakukan dengan menggunakan metode VLSM, dimana kita menge
 
 **Langkah 2 :** Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dan melakukan labelling netmask berdasarkan jumlah IP yang dibutuhkan.   
 
-![Subnetting](https://user-images.githubusercontent.com/55240758/145651114-4d447004-52e2-4ce8-88d1-9926969d65a9.png)  
+![Subnetting_fix](https://user-images.githubusercontent.com/55240758/145660431-678f8aa6-0fac-45a9-b25b-743e42dd2a08.png)
+
 
 Dimana kita akan menjumlahkan usable IP atau host yang dimiliki oleh masing-masing PC, kemudian setiap PC yang terhubung dengan 1 router, maka jumlah hostnya akan ditambahkan dengan 1, dan apabila PC terhubung dengan 2 router, maka jumlah hostnya akan ditambahkan dengan 2, lalu untuk router yang berhubungan dengan router lain, jumlah hostnya adalah 2, karena dia terhubung dengan PC dan juga router lain.
 
@@ -74,14 +75,14 @@ Maka berdasarkan perhitungan atau pembagian IP yang diperoleh dari pohon subnett
 
 | Subnet | Jumlah IP | Length | IP | Subnet Mask |   
 | --- | --- | --- | --- | --- |    
-| A1 (Doriki + Jipangu → Water7) | 3 | 29 | 192.204.7.128 | 255.255.255.248 |  
-| A2 (Blueno → Water7) | 101 | 25 | 192.204.7.0 | 255.255.255.128 |  
-| A3 (Cipher → Water7) | 701 | 22 | 192.204.0.0 | 255.255.252.0 |  
-| A4 (Water7 → Foosha) | 2 | 30 | 192.204.7.144 | 255.255.255.252 |  
-| A5 (Guanhao → Foosha) | 2 | 30 | 192.204.7.148 | 255.255.255.252 |  
-| A6 (Elena → Guanhao) | 301 | 23 | 192.204.4.0 | 255.255.254.0 |  
-| A7 (Fukurou → Guanhao) | 201 | 24 | 192.204.6.0 | 255.255.255.0 |  
-| A8 (Maingate + Jorge → Guanhao) | 3 | 29 | 192.204.7.136 | 255.255.255.248 |  
+| A1 (Doriki + Jipangu → Water7) | 3 | /29 | 10.2.7.128 | 255.255.255.248 |  
+| A2 (Blueno → Water7) | 101 | /25 | 10.2.7.0 | 255.255.255.128 |  
+| A3 (Cipher → Water7) | 701 | /22 | 10.2.0.0 | 255.255.252.0 |  
+| A4 (Water7 → Foosha) | 2 | /30 | 10.2.7.144 | 255.255.255.252 |  
+| A5 (Guanhao → Foosha) | 2 | /30 | 10.2.7.148 | 255.255.255.252 |  
+| A6 (Elena → Guanhao) | 301 | /23 | 10.2.4.0 | 255.255.254.0 |  
+| A7 (Fukurou → Guanhao) | 201 | /24 | 10.2.6.0 | 255.255.255.0 |  
+| A8 (Maingate + Jorge → Guanhao) | 3 | /29 | 10.2.7.136 | 255.255.255.248 |  
 | **Total** |  | **1314** | **21** |  |  |  
 
 
