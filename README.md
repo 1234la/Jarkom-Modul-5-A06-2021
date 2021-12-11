@@ -289,7 +289,7 @@ subnet 10.2.7.0 netmask 255.255.255.128 {
         option domain-name-servers 10.2.7.130;
         default-lease-time 600;
         max-lease-time 7200;
-};
+}
 
 # Cipher A3
 subnet 10.2.0.0 netmask 255.255.252.0 {
@@ -299,7 +299,7 @@ subnet 10.2.0.0 netmask 255.255.252.0 {
         option domain-name-servers 10.2.7.130;
         default-lease-time 600;
 	max-lease-time 7200;
-}; 
+}
 
 # Elena A6
 subnet 10.2.4.0 netmask 255.255.254.0 {
@@ -309,7 +309,7 @@ subnet 10.2.4.0 netmask 255.255.254.0 {
         option domain-name-servers 10.2.7.130;
         default-lease-time 600;
         max-lease-time 7200;
-};
+}
 
 # Fukurou A7
 subnet 10.2.6.0 netmask 255.255.255.0 {
@@ -319,12 +319,12 @@ subnet 10.2.6.0 netmask 255.255.255.0 {
         option domain-name-servers 10.2.7.130;
         default-lease-time 600;
         max-lease-time 7200;
-};
+}
 
 # Routing dari Jipangu ke router
 subnet 10.2.7.128 netmask 255.255.255.248 {
         option routers 10.2.7.129;
-};
+}
 ```
 
 **Langkah 7:** Melakukan setting DHCP Relay pada router yang menghubungkannya (Water7 & Guanhao).
