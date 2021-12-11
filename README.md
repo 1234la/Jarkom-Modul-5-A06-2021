@@ -361,9 +361,9 @@ OPTIONS=""
 ## Soal 1 (belum lengkap)
 Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE. Maka pada CLI Foosha masukkan perintah berikut:
 ```
-iptables -t nat -A POSTROUTING -s 10.2.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.96
+iptables -t nat -A POSTROUTING -s 10.2.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.214
 ```
-dimana _to-source_ tersebut didapatkan dari .....
+dimana _to-source_ tersebut didapatkan dari eth0 pada Foosha yakni 192.168.122.214
 
 Selain itu, agar klien yang terdiri dari Blueno, Cipher, Elena, Fukurou dapat mengakses ke luar, maka perlu ditambahkan forwarding pada DNS Server yaitu Doriki. Maka terlebih dahulu...
 
