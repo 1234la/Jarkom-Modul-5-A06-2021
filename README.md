@@ -111,22 +111,26 @@ gateway 10.2.7.129
 auto lo
 iface lo inet loopback
 
+# Ke Foosha
 auto eth0
 iface eth0 inet static
 address 10.2.7.145
 netmask 255.255.255.252
 gateway 10.2.7.146
 
+# Ke A1(Doriki & Jipangu)
 auto eth1
 iface eth1 inet static
 address 10.2.7.129
 netmask 255.255.255.248
 
+# Ke Blueno
 auto eth2
 iface eth2 inet static
 address 10.2.7.1
 netmask 255.255.255.128
 
+# Ke Cipher
 auto eth3
 iface eth3 inet static
 address 10.2.0.1
@@ -156,15 +160,19 @@ gateway 10.2.0.1
 auto lo
 iface lo inet loopback
 
+# Ke NAT
 auto eth0
 iface eth0 inet dhcp
-hwaddress ether 3a:16:f6:13:c0:56
+hwaddress ether de:7c:14:3b:5e:96
 
+
+# Ke Water7
 auto eth1
 iface eth1 inet static
 address 10.2.7.146
 netmask 255.255.255.252
 
+# Ke Guanhao
 auto eth2
 iface eth2 inet static
 address 10.2.7.149
@@ -193,22 +201,26 @@ gateway 10.2.7.137
 auto lo
 iface lo inet loopback
 
+# Ke Foosha
 auto eth0
 iface eth0 inet static
 address 10.2.7.150
 netmask 255.255.255.252
 gateway 10.2.7.149
 
+# Ke A8( Jorge & Maingate)
 auto eth1
 iface eth1 inet static
 address 10.2.7.137
 netmask 255.255.255.248
 
+# Ke Elena
 auto eth2
 iface eth2 inet static
 address 10.2.4.1
 netmask 255.255.254.0
 
+# Ke Fukurou
 auto eth3
 iface eth3 inet static
 address 10.2.6.1
