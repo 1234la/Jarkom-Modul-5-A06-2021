@@ -256,9 +256,9 @@ route add -net 10.2.0.0 netmask 255.255.252.0 gw 10.2.7.145
 
 - kanan
 ```
-route add -net 10.2.4.0 netmask 255.255.254.0 gw 10.2.7.149
-route add -net 10.2.6.0 netmask 255.255.255.0 gw 10.2.7.149
-route add -net 10.2.7.136  netmask 255.255.255.248 gw 10.2.7.149
+route add -net 10.2.4.0 netmask 255.255.254.0 gw 10.2.7.150
+route add -net 10.2.6.0 netmask 255.255.255.0 gw 10.2.7.150
+route add -net 10.2.7.136  netmask 255.255.255.248 gw 10.2.7.150
 ```
 
 **Langkah 6:** Memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server.  
