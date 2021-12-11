@@ -425,7 +425,8 @@ iptables -A FORWARD -d 10.2.7.128/29 -i eth0 -p tcp --dport 443 -j ACCEPT
 ![no  2 ping pada doriki](https://user-images.githubusercontent.com/55240758/145658820-4ddbd6ac-12d8-480a-9d6d-3af03b62310c.jpg)
 
 ## Soal 3 (belum selesai)
-Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop. 
+Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.   
+
 **Langkah 1:** Masukkan perintah berikut pada CLI DHCP server & DNS server
 ```
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
@@ -437,7 +438,8 @@ Gambar ...
 
 
 ## Soal 4 (belum selesai)
-Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis. 
+Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.   
+
 **Langkah 1:** Pada CLI DNS server (Doriki) tambahkan perintah berikut
 ```
 # Blueno
@@ -479,7 +481,8 @@ date -s "15 NOV 2021 18:00:00"
 Gambar ...
 
 ## Soal 5 (belum selesai)
-Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
+Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.  
+
 **Langkah 1:** Pada CLI DNS server (Doriki) tambahkan perintah berikut
 ```
 # Elena
