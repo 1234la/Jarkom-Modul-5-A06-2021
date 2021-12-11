@@ -449,8 +449,8 @@ iptables -A INPUT -s 10.2.0.0/22 -m time --timestart 07:00 --timestop 15:00 --we
 iptables -A INPUT -s 10.2.0.0/22 -j REJECT
 ```
 
-**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :
-Sabtu, 11 Desember 2021
+**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :  
+**Sabtu, 11 Desember 2021**
 1.  Pukul 08:00 -> gabisa
 ```
 date -s "6 DEC 2021 08:00:00"
@@ -463,7 +463,7 @@ date -s "6 DEC 2021 16:00:00"
 ```
 Gambar ...
 
-Senin, 15 November 2021 
+**Senin, 15 November 2021 **
 1.  Pukul 10:00 -> bisa
 ```
 date -s "15 NOV 2021 10:00:00"
@@ -489,8 +489,8 @@ iptables -A INPUT -s 10.2.6.0/24 -m time --timestart 15:01 --timestop 06:59 -j A
 iptables -A INPUT -s 10.2.6.0/24 -j REJECT
 ```
 
-**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :
-Sabtu, 11 Desember 2021
+**Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :  
+**Sabtu, 11 Desember 2021**
 1.  Pukul 08:00 -> gabisa
 ```
 date -s "6 DEC 2021 08:00:00"
