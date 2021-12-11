@@ -83,7 +83,7 @@ Maka berdasarkan perhitungan atau pembagian IP yang diperoleh dari pohon subnett
 | A6 (Elena → Guanhao) | 301 | /23 | 10.2.4.0 | 255.255.254.0 |  
 | A7 (Fukurou → Guanhao) | 201 | /24 | 10.2.6.0 | 255.255.255.0 |  
 | A8 (Maingate + Jorge → Guanhao) | 3 | /29 | 10.2.7.136 | 255.255.255.248 |  
-| **Total** |  | **1314** | **21** |  |  |  
+| **Total** | **1314** | **/21** |  |  |  
 
 
 **Langkah 4 :** Melakukan penyetingan IP dan netmask berdasarkan perhitungan pada router maupun PC sesuai dengan label yang telah diberikan sebelumnya pada interface yang sesuai pada ``/etc/network/interfaces`` dengan menggunakan ``nano`` atau klik kanan node > edit network configuration untuk menambahkannya.
