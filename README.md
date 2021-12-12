@@ -6,8 +6,8 @@
 # text in gray
 @@ text in purple (and bold)@@
 ```
-# Jarkom-Modul-4-A06-2021
-Lapres Praktikum Jaringan Komputer 2021 - Modul 4
+# Jarkom-Modul-5-A06-2021
+Lapres Praktikum Jaringan Komputer 2021 - Modul 5
 
 - Muh. Nur Fajrin Amiruddin (05111940000005)
 - Rihan Farih Bunyamin (05111940000165)
