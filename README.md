@@ -428,6 +428,15 @@ iptables -A FORWARD -d 10.2.7.128/29 -i eth0 -p tcp --dport 80 -j DROP
 iptables -A FORWARD -d 10.2.7.128/29 -i eth0 -p tcp --dport 443 -j ACCEPT
 ```
 
+Keterangan:
+
+- ``-A FORWARD``: Menggunakan chain FORWARD
+- ``-p tcp``: Mendefinisikan protokol yang digunakan, yaitu tcp
+- ``--dport 80``: Mendefinisikan port yang digunakan, yaitu 80 (HTTP)
+- ``-d 10.2.7.128/29``: Mendefinisikan alamat tujuan dari paket (DHCP dan DNS SERVER ) berada pada subnet 
+- ``-i eth0``: Paket masuk dari eth0 Foosha
+- ``-j DROP``: Paket di-drop
+
 **Langkah 2:** Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan 
 - Melakukan ``ping its.ac.id`` untuk HTTPS 
 
@@ -537,6 +546,43 @@ Gambar ...
 ## Soal 6
 Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate.
 
+Doriki : 
+
+- membuat domain (DNS) yang mengarah ke IP random pada file /etc/bind/named.conf
+	```
+	zone "jarkomA06.com" {
+        type master;
+        file "/etc/bind/jarkom/jarkomA06.com";
+	};
+	```
+	
+- Buat folder jarkom dengan command:
+ 
+	```mkdir /etc/bind/jarkom```
+	
+- lalu copy db.local ke file /etc/bind/jarkom/jarkomA06.com
+ 
+ 	```cp /etc/bind/db.local /etc/bind/jarkom/jarkomA06.com```
+	
+- Lalu edit file /etc/bind/jarkom/jarkomA06.com
+	```
+		$TTL    604800
+	@       IN      SOA     jarkomA06.com. root.jarkomA06.com. (
+				2021120705      ; Serial
+				 604800         ; Refresh
+				  86400         ; Retry
+				2419200         ; Expire
+				 604800 )       ; Negative Cache TTL
+	;
+	@       IN      NS      jarkomA06.com.
+	@       IN      A       10.2.7.138
+	```
+
+
+
+
+
+
 Pada Guanhao :
 ```
 iptables -A PREROUTING -t nat -p tcp -d 10.2.7.128/29 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination  10.2.7.138
@@ -558,7 +604,7 @@ Testing
 - Pada Guanhao, Jorge, Maingate Elena dan fukurou install apt-get install netcat
 - Pada Jorge ketikkan perintah: nc -l -p 80
 - Pada Maingate ketikkan perintah: nc -l -p 80
-- Pada client Elena dan fukurou ketikkan perintah: nc 10.2.8.1 80
+- Pada client Elena dan fukurou ketikkan perintah: nc 10.2.7.138 80
 - Ketikkan sembarang pada client Elena dan fukurou, nanti akan muncul bergantian
 
 
