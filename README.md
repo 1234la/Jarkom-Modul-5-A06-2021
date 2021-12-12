@@ -464,6 +464,18 @@ iptables -A INPUT -s 10.2.0.0/22 -m time --timestart 07:00 --timestop 15:00 --we
 iptables -A INPUT -s 10.2.0.0/22 -j REJECT
 ```
 
+Keterangan:
+
+- ``A INPUT`` : Menggunakan chain INPUT
+- ``s 10.2.7.0/25`` : Mendifinisikan alamat asal dari paket yaitu IP dari subnet Blueno
+- ``s 10.2.0.0/22 `` : Mendifinisikan alamat asal dari paket yaitu IP dari subnet Chiper
+- ``m time`` : Menggunakan rule time
+- ``-timestart 07:00`` : Mendefinisikan waktu mulai yaitu 07:00
+- ``-timestop 15:00``: Mendefinisikan waktu berhenti yaitu 15:00
+- ``--weekdays Mon,Tue,Wed,Thu`` : Mendefinisikan hari yaitu Senin hingga Kamis
+- ``-j ACCEPT`` : Paket di-accept
+- ``-j REJECT`` : Paket ditolak
+
 **Langkah 2:**  Lakukan pengecekan apakah perintah yang telah diinputkan berhasil dengan melakukan ping pada Blueno & Cipher dengan studi kasus :  
 
 **Sabtu, 11 Desember 2021**
@@ -540,3 +552,13 @@ apt-get install apache2 -y
 ```
 Kemudian tambahkan file di /var/www/html/index.html
 lalu testing dengan curl 10.2.7.128 dari client
+
+Testing
+
+- Pada Guanhao, Jorge, Maingate Elena dan fukurou install apt-get install netcat
+- Pada Jorge ketikkan perintah: nc -l -p 80
+- Pada Maingate ketikkan perintah: nc -l -p 80
+- Pada client Elena dan fukurou ketikkan perintah: nc 10.2.8.1 80
+- Ketikkan sembarang pada client Elena dan fukurou, nanti akan muncul bergantian
+
+
